@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://7v2hefja6kps"]
+
+[ext_resource type="Script" uid="uid://dkvkgi7d2lqp3" path="res://Scripts/Player.cs" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://cvm121r87a6xo" path="res://sprites/Mobile - THE IDOLMSTER Cinderella Girls Starlight Stage - Yoshino Yorita Reflections in the Boundary.png" id="1_v0iea"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_cvnsp")
+
+[node name="Mobile-TheIdolmsterCinderellaGirlsStarlightStage-YoshinoYoritaReflectionsInTheBoundary" type="Sprite2D" parent="."]
+position = Vector2(-3, -1)
+texture = ExtResource("1_v0iea")
+region_enabled = true
+region_rect = Rect2(75.0001, 72, 121, 179)
