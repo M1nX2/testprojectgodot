@@ -517,6 +517,12 @@ position = Vector2(863, 904)
 [node name="Skeleton3" parent="Mobs" instance=ExtResource("6_0f350")]
 position = Vector2(1144, 899)
 
+[node name="Skeleton4" parent="Mobs" instance=ExtResource("6_0f350")]
+position = Vector2(1452, 896)
+
+[node name="Skeleton5" parent="Mobs" instance=ExtResource("6_0f350")]
+position = Vector2(1756, 891)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LabelHP" type="Label" parent="CanvasLayer"]

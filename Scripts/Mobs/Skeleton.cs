@@ -94,6 +94,8 @@ public partial class Skeleton : CharacterBody2D
     private void death()
     {
         alive = false;
+        Tween tween1 = GetTree().CreateTween();
+        tween1.TweenProperty(this, "modulate:a", 0.1, 0.7f);
         anim.Play("Death");
         anim.AnimationFinished += () => QueueFree();
     }
