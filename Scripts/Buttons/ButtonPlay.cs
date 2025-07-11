@@ -10,7 +10,7 @@ public partial class ButtonPlay : Button
 
     private void _on_pressed()
     {
-        GetTree().ChangeSceneToFile("res://Scenes/main.tscn");
+        GetTree().ChangeSceneToFile("res://Scenes/level.tscn");
         Visible = false;
     }
 }
