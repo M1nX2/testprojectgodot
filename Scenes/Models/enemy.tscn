@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dp15830ke8px0"]
 
-[ext_resource type="Script" uid="uid://3kobmwqhcch3" path="res://Scripts/Enemy.cs" id="1_1f0kj"]
+[ext_resource type="Script" uid="uid://3kobmwqhcch3" path="res://Scripts/Characters/Enemy.cs" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://bqflwd87f7mq7" path="res://sprites/Mobile - THE IDOLMSTER Cinderella Girls Starlight Stage - Tokiko Zaizen Queen of Queens.png" id="1_hghv2"]
 
 [node name="Enemy" type="Node2D"]

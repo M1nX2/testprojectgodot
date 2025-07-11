@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://p3qutpvj4qjh"]
+
+[ext_resource type="Texture2D" uid="uid://cxf0x5my81kub" path="res://sprites/oak_woods_v1.0/background/background_layer_1.png" id="1_ha8nf"]
+[ext_resource type="Texture2D" uid="uid://dd1ec1k2kbji5" path="res://sprites/oak_woods_v1.0/background/background_layer_2.png" id="2_3hex7"]
+[ext_resource type="Texture2D" uid="uid://cn84ihtmu4xyi" path="res://sprites/oak_woods_v1.0/background/background_layer_3.png" id="3_h0vxs"]
+
+[node name="BG" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+
+[node name="BackgroundLayer1" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(960, 536.5)
+scale = Vector2(5.98125, 5.95)
+texture = ExtResource("1_ha8nf")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+
+[node name="BackgroundLayer2" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(960.5, 539.5)
+scale = Vector2(5.97188, 5.99445)
+texture = ExtResource("2_3hex7")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+
+[node name="BackgroundLayer3" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(962, 542)
+scale = Vector2(5.98125, 6.02222)
+texture = ExtResource("3_h0vxs")
