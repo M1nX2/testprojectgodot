@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://blarcxj460doh"]
+[gd_scene load_steps=10 format=3 uid="uid://blarcxj460doh"]
 
+[ext_resource type="Script" uid="uid://bjeqpkarh5q7x" path="res://Scripts/Collectables/Gold.cs" id="1_c52ku"]
 [ext_resource type="Texture2D" uid="uid://bm7et4vig7nic" path="res://sprites/MonedaD.png" id="1_l5drr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_50wyi"]
@@ -49,6 +50,7 @@ animations = [{
 }]
 
 [node name="Gold" type="Area2D"]
+script = ExtResource("1_c52ku")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_50wyi")
@@ -59,3 +61,5 @@ sprite_frames = SubResource("SpriteFrames_n64vo")
 animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.788337
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

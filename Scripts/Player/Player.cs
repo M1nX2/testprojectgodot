@@ -6,6 +6,7 @@ public partial class Player : CharacterBody2D
 	public const float Speed = 200.0f;
 	public const float JumpVelocity = -400.0f;
 
+	public int gold = 0;
 	public int health = 100;
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://du80i1d06ml37"]
+[gd_scene load_steps=13 format=3 uid="uid://du80i1d06ml37"]
 
 [ext_resource type="PackedScene" uid="uid://cavrx0srtsckh" path="res://Scenes/Player/player.tscn" id="1_tumq0"]
 [ext_resource type="Texture2D" uid="uid://cxf0x5my81kub" path="res://sprites/oak_woods_v1.0/background/background_layer_1.png" id="2_wqkje"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cn84ihtmu4xyi" path="res://sprites/oak_woods_v1.0/background/background_layer_3.png" id="4_8c0lf"]
 [ext_resource type="Texture2D" uid="uid://dpg3h5ehe6ej0" path="res://sprites/oak_woods_v1.0/oak_woods_tileset.png" id="5_754fn"]
 [ext_resource type="PackedScene" uid="uid://b3xhaw8p0cft" path="res://Scenes/Mobs/skeleton.tscn" id="6_0f350"]
-[ext_resource type="Script" uid="uid://bvh4hpujeyjqm" path="res://Scripts/Label/HP.cs" id="7_8c0lf"]
+[ext_resource type="Script" uid="uid://ivv7ew5bl6av" path="res://Scripts/Label/LabelHP.cs" id="7_bvt00"]
 [ext_resource type="PackedScene" uid="uid://blarcxj460doh" path="res://Scenes/Collectables/gold.tscn" id="8_754fn"]
+[ext_resource type="Script" uid="uid://rbhel3sha5u3" path="res://Scripts/Label/LabelGold.cs" id="8_bvt00"]
+[ext_resource type="Script" uid="uid://o8ph5r683v6i" path="res://Scripts/Collectables/Collectables.cs" id="9_oqgf2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bvt00"]
 texture = ExtResource("5_754fn")
@@ -517,14 +519,30 @@ position = Vector2(1144, 899)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="LabelHP" type="Label" parent="CanvasLayer"]
 offset_right = 154.0
 offset_bottom = 61.0
 theme_override_font_sizes/font_size = 36
 text = "HP: "
-script = ExtResource("7_8c0lf")
+script = ExtResource("7_bvt00")
+
+[node name="LabelGold" type="Label" parent="CanvasLayer"]
+offset_top = 44.0
+offset_right = 99.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 36
+text = "Gold: "
+script = ExtResource("8_bvt00")
 
 [node name="Collectables" type="Node2D" parent="."]
+script = ExtResource("9_oqgf2")
 
 [node name="Gold" parent="Collectables" instance=ExtResource("8_754fn")]
+visible = false
 position = Vector2(597, 945)
+
+[node name="Timer" type="Timer" parent="Collectables"]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]

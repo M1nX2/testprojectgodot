@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://blhoeit1rkt7a" path="res://sprites/oak_woods_v1.0/character/char_blue.png" id="1_uvnfx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tugb3"]
+radius = 16.0
+height = 52.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqdc0"]
 atlas = ExtResource("1_uvnfx")
@@ -217,8 +219,8 @@ script = ExtResource("1_a3d8c")
 shape = SubResource("CapsuleShape2D_tugb3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -13)
+position = Vector2(2, -16)
+scale = Vector2(1.46429, 1.46429)
 sprite_frames = SubResource("SpriteFrames_uvnfx")
-animation = &"Fall"
+animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.09582

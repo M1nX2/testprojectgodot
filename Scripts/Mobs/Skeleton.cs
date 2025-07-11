@@ -55,7 +55,7 @@ public partial class Skeleton : CharacterBody2D
 
     public void _on_detector_body_entered(Node2D body)
     {
-        if (body.Name.Equals("Player"))
+        if (body is Player)
         {
             chase = true;
         }
@@ -63,7 +63,7 @@ public partial class Skeleton : CharacterBody2D
 
     public void _on_detector_body_exited(Node2D body)
     {
-        if (body.Name.Equals("Player"))
+        if (body is Player)
         {
             chase = false;
         }
@@ -71,7 +71,7 @@ public partial class Skeleton : CharacterBody2D
 
     public void _on_death_body_entered(Node2D body)
     {
-        if (body.Name.Equals("Player") && alive)
+        if (body is Player && alive)
         {
             Player player = (Player)body;
             Vector2 velocity = player.Velocity;
@@ -83,7 +83,7 @@ public partial class Skeleton : CharacterBody2D
 
     public void _on_death_2_body_entered(Node2D body)
     {
-        if (body.Name.Equals("Player") && alive)
+        if (body is Player && alive)
         {
             Player player = (Player)body;
             player.health -= 40;
