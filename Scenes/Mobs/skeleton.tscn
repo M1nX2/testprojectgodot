@@ -149,6 +149,7 @@ animation = &"Death"
 autoplay = "Idle"
 
 [node name="Detector" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
 shape = SubResource("CircleShape2D_5psxx")
