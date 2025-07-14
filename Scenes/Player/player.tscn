@@ -1,9 +1,10 @@
-[gd_scene load_steps=99 format=3 uid="uid://cavrx0srtsckh"]
+[gd_scene load_steps=101 format=3 uid="uid://cavrx0srtsckh"]
 
 [ext_resource type="Script" uid="uid://bs6s1wqlya4co" path="res://Scripts/Player/Player.cs" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://blhoeit1rkt7a" path="res://sprites/oak_woods_v1.0/character/char_blue.png" id="1_uvnfx"]
 [ext_resource type="Texture2D" uid="uid://bsftcwt1fpx61" path="res://sprites/generic_char_v0.2/png/blue/char_blue_1.png" id="2_mtuoh"]
 [ext_resource type="Texture2D" uid="uid://4s7kf1w327vq" path="res://sprites/generic_char_v0.2/png/blue/char_blue_2.png" id="3_htcer"]
+[ext_resource type="Texture2D" uid="uid://bmbdevrlr44et" path="res://sprites/circle.png" id="5_htcer"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tugb3"]
 radius = 16.0
@@ -661,7 +662,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [null],
+"args": [],
 "method": &"Combo1"
 }]
 }
@@ -691,6 +692,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Attack2"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Combo1"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_dd0ac"]
@@ -984,6 +999,9 @@ _data = {
 &"Walk": SubResource("Animation_dey5f")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_htcer"]
+polygon = PackedVector2Array(-141.935, 283.871, 180.645, 296.774, 180.645, 322.581, -141.935, 322.581)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_a3d8c")
 
@@ -994,10 +1012,21 @@ shape = SubResource("CapsuleShape2D_tugb3")
 position = Vector2(2, -16)
 scale = Vector2(1.46429, 1.46429)
 sprite_frames = SubResource("SpriteFrames_uvnfx")
-animation = &"Attack"
+animation = &"Attack2"
 autoplay = "Idle"
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_q0h8a")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.0775, 0.0775)
+color = Color(0.700098, 0.553604, 0, 1)
+energy = 0.5
+texture = ExtResource("5_htcer")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+scale = Vector2(0.0775, 0.0775)
+occluder = SubResource("OccluderPolygon2D_htcer")

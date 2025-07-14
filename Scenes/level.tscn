@@ -1,15 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://du80i1d06ml37"]
+[gd_scene load_steps=21 format=3 uid="uid://du80i1d06ml37"]
 
+[ext_resource type="Script" uid="uid://40p0a11v6fai" path="res://Scripts/Levels/Level1.cs" id="1_ha31o"]
 [ext_resource type="PackedScene" uid="uid://cavrx0srtsckh" path="res://Scenes/Player/player.tscn" id="1_tumq0"]
 [ext_resource type="Texture2D" uid="uid://cxf0x5my81kub" path="res://sprites/oak_woods_v1.0/background/background_layer_1.png" id="2_wqkje"]
 [ext_resource type="Texture2D" uid="uid://dd1ec1k2kbji5" path="res://sprites/oak_woods_v1.0/background/background_layer_2.png" id="3_0f350"]
 [ext_resource type="Texture2D" uid="uid://cn84ihtmu4xyi" path="res://sprites/oak_woods_v1.0/background/background_layer_3.png" id="4_8c0lf"]
+[ext_resource type="PackedScene" uid="uid://sdf2371jm7kv" path="res://Scenes/Build/shop.tscn" id="4_qxfql"]
 [ext_resource type="Texture2D" uid="uid://dpg3h5ehe6ej0" path="res://sprites/oak_woods_v1.0/oak_woods_tileset.png" id="5_754fn"]
 [ext_resource type="PackedScene" uid="uid://b3xhaw8p0cft" path="res://Scenes/Mobs/skeleton.tscn" id="6_0f350"]
 [ext_resource type="Script" uid="uid://ivv7ew5bl6av" path="res://Scripts/Label/LabelHP.cs" id="7_bvt00"]
 [ext_resource type="PackedScene" uid="uid://blarcxj460doh" path="res://Scenes/Collectables/gold.tscn" id="8_754fn"]
 [ext_resource type="Script" uid="uid://rbhel3sha5u3" path="res://Scripts/Label/LabelGold.cs" id="8_bvt00"]
 [ext_resource type="Script" uid="uid://o8ph5r683v6i" path="res://Scripts/Collectables/Collectables.cs" id="9_oqgf2"]
+[ext_resource type="Texture2D" uid="uid://bmbdevrlr44et" path="res://sprites/circle.png" id="13_pa6b8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bvt00"]
 texture = ExtResource("5_754fn")
@@ -455,9 +458,66 @@ texture = ExtResource("5_754fn")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_bvt00")
 
+[sub_resource type="Animation" id="Animation_pa6b8"]
+resource_name = "dayTextFadeIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelDayText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.989486),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.752941)]
+}
+
+[sub_resource type="Animation" id="Animation_crh0w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelDayText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c7le1"]
+resource_name = "dayTextFadeOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelDayText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00138778, 0.997813),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2klc5"]
+_data = {
+&"RESET": SubResource("Animation_crh0w"),
+&"dayTextFadeIn": SubResource("Animation_pa6b8"),
+&"dayTextFadeOut": SubResource("Animation_c7le1")
+}
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pa6b8"]
+polygon = PackedVector2Array(-2305, 969, -2305, 1088, 4992, 1088, 4992, 972)
+
 [node name="Level" type="Node2D"]
+script = ExtResource("1_ha31o")
 
 [node name="BG" type="ParallaxBackground" parent="."]
+layer = -1
 offset = Vector2(0, 416.975)
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 416.975)
@@ -487,6 +547,9 @@ motion_mirroring = Vector2(1913.93, 0)
 position = Vector2(962, 542)
 scale = Vector2(5.98125, 6.02222)
 texture = ExtResource("4_8c0lf")
+
+[node name="Shop" parent="." instance=ExtResource("4_qxfql")]
+position = Vector2(820, 896)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_oqgf2")
@@ -531,6 +594,20 @@ theme_override_font_sizes/font_size = 36
 text = "Gold: "
 script = ExtResource("8_bvt00")
 
+[node name="LabelDayText" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 822.0
+offset_top = 317.0
+offset_right = 1074.0
+offset_bottom = 469.0
+theme_override_font_sizes/font_size = 80
+text = "Day"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_2klc5")
+}
+
 [node name="Collectables" type="Node2D" parent="."]
 script = ExtResource("9_oqgf2")
 
@@ -539,7 +616,31 @@ visible = false
 position = Vector2(597, 945)
 
 [node name="Timer" type="Timer" parent="Collectables"]
-wait_time = 3.0
+wait_time = 0.001
 autostart = true
 
+[node name="SunLight" type="DirectionalLight2D" parent="."]
+energy = 0.4
+blend_mode = 1
+range_layer_min = -1
+
+[node name="DayNight" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(770, 932)
+rotation = -3.14159
+scale = Vector2(0.272939, 0.270215)
+color = Color(0.913725, 0.584314, 0, 0.811765)
+energy = 1.5
+shadow_enabled = true
+texture = ExtResource("13_pa6b8")
+offset = Vector2(15, 15)
+height = 64.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_pa6b8")
+
 [connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]
+[connection signal="timeout" from="DayNight" to="." method="_on_day_night_timeout"]

@@ -27,7 +27,8 @@ public partial class Player : CharacterBody2D
 	public int gold = 0;
 	public int health = 100;
 
-    private int combo = 0;
+    private bool combo = false;
+    private bool attackCooldown = false;
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
     public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -63,8 +64,10 @@ public partial class Player : CharacterBody2D
                 AttackState();
                 break;
             case State.ATTACK2:
+                Attack2State();
                 break;
             case State.ATTACK3:
+                Attack3State();
                 break;
             case State.BLOCK:
                 BlockState();
@@ -153,7 +156,7 @@ public partial class Player : CharacterBody2D
             state = State.SLIDE;
         }
 
-        if (Input.IsActionJustPressed("attack"))
+        if (Input.IsActionJustPressed("attack") && !attackCooldown)
         { 
             state = State.ATTACK1;
         }
@@ -178,17 +181,48 @@ public partial class Player : CharacterBody2D
 
     private async void AttackState()
     {
+        if (Input.IsActionJustPressed("attack") && combo == true && !attackCooldown)
+        {
+            state = State.ATTACK2;
+        }
         velocity.X = 0;
         
         animPlayer.Play("Attack");
         await ToSignal(animPlayer, "animation_finished");
+        AttackFreeze();
         state = State.MOVE;
     }
 
-    public async void Combo1(AnimationPlayer animationPlayer)
+    public async void Attack2State()
     {
-        combo = 1;
+        if (Input.IsActionJustPressed("attack") && combo == true && !attackCooldown)
+        {
+            state = State.ATTACK3;
+        }
+        animPlayer.Play("Attack2");
         await ToSignal(animPlayer, "animation_finished");
-        combo = 0;
+        state = State.MOVE;
     }
+
+    public async void Attack3State()
+    {
+        animPlayer.Play("Attack3");
+        await ToSignal(animPlayer, "animation_finished");
+        state = State.MOVE;
+    }
+
+    public async void Combo1()
+    {
+        combo = true;
+        await ToSignal(animPlayer, "animation_finished");
+        combo = false;
+    }
+
+    private async void AttackFreeze()
+    {
+        attackCooldown = true;
+        await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+        attackCooldown = false;
+    }
+
 }
