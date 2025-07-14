@@ -68,12 +68,11 @@ public partial class Level1 : Node2D
         tween.TweenProperty(sunLight, "energy", 0.95, 20.0f);
     }
 
-    public async void _on_day_night_timeout() 
+    public void _on_day_night_timeout() 
     {
         dayState += 1;
         dayState = (DayState)((int)dayState % 4);
 
-        GD.Print(dayState);
 
         switch (dayState)
         {
