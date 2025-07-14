@@ -86,7 +86,7 @@ public partial class Skeleton : CharacterBody2D
         if (body is Player && alive)
         {
             Player player = (Player)body;
-            player.health -= 40;
+            player.Health -= 40;
             death();
         }
     }
