@@ -24,8 +24,8 @@ public partial class Level1 : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-        sunLight = GetNode<DirectionalLight2D>("SunLight");
-        flashlight = GetNode<PointLight2D>("PointLight2D");
+        sunLight = GetNode<DirectionalLight2D>("/root/Level/Light/SunLight");
+        flashlight = GetNode<PointLight2D>("/root/Level/Light/PointLight2D");
         labelDay = GetNode<Label>("/root/Level/CanvasLayer/LabelDayText");
         animPlayer = GetNode<AnimationPlayer>("/root/Level/CanvasLayer/AnimationPlayer");
 
@@ -68,12 +68,11 @@ public partial class Level1 : Node2D
         tween.TweenProperty(sunLight, "energy", 0.95, 20.0f);
     }
 
-    public async void _on_day_night_timeout() 
+    public void _on_day_night_timeout() 
     {
         dayState += 1;
         dayState = (DayState)((int)dayState % 4);
 
-        GD.Print(dayState);
 
         switch (dayState)
         {

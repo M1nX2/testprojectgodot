@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 public partial class Player : CharacterBody2D
 {
-	enum State
+	enum StateType
     {
         IDLE,
 		MOVE,
@@ -17,15 +17,15 @@ public partial class Player : CharacterBody2D
         FALL
     }
 
-	State state = State.MOVE;
+	StateType state = StateType.MOVE;
 
 
     public int RunSpeed = 1;
 	public const float Speed = 200.0f;
 	public const float JumpVelocity = -400.0f;
 
-	public int gold = 0;
-	public int health = 100;
+	public int Gold { get; set; }
+    public int Health { get; set; }
 
     private bool combo = false;
     private bool attackCooldown = false;
@@ -42,6 +42,9 @@ public partial class Player : CharacterBody2D
     {
         anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
+        Health = 100;
+        Gold = 0;
     }
 
 	public override void _Process(double delta)
@@ -55,29 +58,29 @@ public partial class Player : CharacterBody2D
 
         switch (state) 
 		{
-            case State.IDLE:
+            case StateType.IDLE:
                 break;
-            case State.MOVE:
+            case StateType.MOVE:
                 MoveState();
                 break;
-            case State.ATTACK1:
+            case StateType.ATTACK1:
                 AttackState();
                 break;
-            case State.ATTACK2:
+            case StateType.ATTACK2:
                 Attack2State();
                 break;
-            case State.ATTACK3:
+            case StateType.ATTACK3:
                 Attack3State();
                 break;
-            case State.BLOCK:
+            case StateType.BLOCK:
                 BlockState();
                 break;
-            case State.SLIDE:
+            case StateType.SLIDE:
                 SlideState();
                 break;
-            case State.JUMP:
+            case StateType.JUMP:
                 break;
-            case State.FALL:
+            case StateType.FALL:
                 break;
 		}
 
@@ -89,9 +92,9 @@ public partial class Player : CharacterBody2D
 
 
 
-        if (health <= 0)
+        if (Health <= 0)
         {
-            health = 0;
+            Health = 0;
             animPlayer.Play("Death");
             await ToSignal(animPlayer, "animation_finished");
             QueueFree();
@@ -151,14 +154,14 @@ public partial class Player : CharacterBody2D
         if (Input.IsActionPressed("block"))
         {
             if (velocity.X==0)
-            state = State.BLOCK;
+            state = StateType.BLOCK;
             else
-            state = State.SLIDE;
+            state = StateType.SLIDE;
         }
 
         if (Input.IsActionJustPressed("attack") && !attackCooldown)
         { 
-            state = State.ATTACK1;
+            state = StateType.ATTACK1;
         }
 
     }
@@ -168,7 +171,7 @@ public partial class Player : CharacterBody2D
         animPlayer.Play("Block");
         if (Input.IsActionJustReleased("block"))
         {
-            state = State.MOVE;
+            state = StateType.MOVE;
         }
     }
 
@@ -176,39 +179,39 @@ public partial class Player : CharacterBody2D
     {
         animPlayer.Play("Slide");
         await ToSignal(animPlayer, "animation_finished");
-        state = State.MOVE;        
+        state = StateType.MOVE;        
     }
 
     private async void AttackState()
     {
         if (Input.IsActionJustPressed("attack") && combo == true && !attackCooldown)
         {
-            state = State.ATTACK2;
+            state = StateType.ATTACK2;
         }
         velocity.X = 0;
         
         animPlayer.Play("Attack");
         await ToSignal(animPlayer, "animation_finished");
         AttackFreeze();
-        state = State.MOVE;
+        state = StateType.MOVE;
     }
 
     public async void Attack2State()
     {
         if (Input.IsActionJustPressed("attack") && combo == true && !attackCooldown)
         {
-            state = State.ATTACK3;
+            state = StateType.ATTACK3;
         }
         animPlayer.Play("Attack2");
         await ToSignal(animPlayer, "animation_finished");
-        state = State.MOVE;
+        state = StateType.MOVE;
     }
 
     public async void Attack3State()
     {
         animPlayer.Play("Attack3");
         await ToSignal(animPlayer, "animation_finished");
-        state = State.MOVE;
+        state = StateType.MOVE;
     }
 
     public async void Combo1()

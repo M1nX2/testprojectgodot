@@ -27,7 +27,7 @@ public partial class Gold : Area2D
             tween1.TweenCallback(Callable.From(() => QueueFree()));
 
             Player player = (Player)body;
-			player.gold += 1;
+			player.Gold += 1;
         }
     }
 }
