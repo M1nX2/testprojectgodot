@@ -24,8 +24,8 @@ public partial class Player : CharacterBody2D
 	public const float Speed = 200.0f;
 	public const float JumpVelocity = -400.0f;
 
-	public int gold = 0;
-	public int health = 100;
+	public int Gold { get; set; }
+    public int Health { get; set; }
 
     private bool combo = false;
     private bool attackCooldown = false;
@@ -42,6 +42,9 @@ public partial class Player : CharacterBody2D
     {
         anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
+        Health = 100;
+        Gold = 0;
     }
 
 	public override void _Process(double delta)
