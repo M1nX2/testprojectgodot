@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://du80i1d06ml37"]
+[gd_scene load_steps=20 format=3 uid="uid://du80i1d06ml37"]
 
 [ext_resource type="Script" uid="uid://40p0a11v6fai" path="res://Scripts/Levels/Level1.cs" id="1_ha31o"]
 [ext_resource type="PackedScene" uid="uid://cavrx0srtsckh" path="res://Scenes/Player/player.tscn" id="1_tumq0"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://sdf2371jm7kv" path="res://Scenes/Build/shop.tscn" id="4_qxfql"]
 [ext_resource type="Texture2D" uid="uid://dpg3h5ehe6ej0" path="res://sprites/oak_woods_v1.0/oak_woods_tileset.png" id="5_754fn"]
 [ext_resource type="Script" uid="uid://ivv7ew5bl6av" path="res://Scripts/Label/LabelHP.cs" id="7_bvt00"]
-[ext_resource type="PackedScene" uid="uid://blarcxj460doh" path="res://Scenes/Collectables/gold.tscn" id="8_754fn"]
 [ext_resource type="Script" uid="uid://rbhel3sha5u3" path="res://Scripts/Label/LabelGold.cs" id="8_bvt00"]
 [ext_resource type="PackedScene" uid="uid://dqhjw8i86uer7" path="res://Scenes/Mobs/mushroom.tscn" id="9_c7le1"]
 [ext_resource type="Script" uid="uid://o8ph5r683v6i" path="res://Scripts/Collectables/Collectables.cs" id="9_oqgf2"]
@@ -462,21 +461,6 @@ sources/0 = SubResource("TileSetAtlasSource_bvt00")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pa6b8"]
 polygon = PackedVector2Array(-2305, 969, -2305, 1088, 4992, 1088, 4992, 972)
 
-[sub_resource type="Animation" id="Animation_pa6b8"]
-resource_name = "dayTextFadeIn"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LabelDayText:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.989486),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.752941)]
-}
-
 [sub_resource type="Animation" id="Animation_crh0w"]
 length = 0.001
 tracks/0/type = "value"
@@ -490,6 +474,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pa6b8"]
+resource_name = "dayTextFadeIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelDayText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.989486),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.752941)]
 }
 
 [sub_resource type="Animation" id="Animation_c7le1"]
@@ -592,7 +591,7 @@ position = Vector2(425, 939)
 [node name="Player" type="Node2D" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("1_tumq0")]
-position = Vector2(571, 925)
+position = Vector2(625, 926)
 
 [node name="Camera2D" type="Camera2D" parent="Player/Player"]
 position = Vector2(34, -92)
@@ -638,10 +637,6 @@ libraries = {
 
 [node name="Collectables" type="Node2D" parent="."]
 script = ExtResource("9_oqgf2")
-
-[node name="Gold" parent="Collectables" instance=ExtResource("8_754fn")]
-visible = false
-position = Vector2(597, 945)
 
 [node name="Timer" type="Timer" parent="Collectables"]
 wait_time = 2.0
