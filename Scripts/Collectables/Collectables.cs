@@ -19,10 +19,10 @@ public partial class Collectables : Node2D
 	public void _on_timer_timeout()
     {
 		//спавн монеток
-		//Node2D goldTemp = (Node2D)gold.Instantiate();
-		//RandomNumberGenerator rng = new RandomNumberGenerator();
-		//int randint = rng.RandiRange(60, 500);
-		//goldTemp.Position = new Vector2(randint, 950);
-		//AddChild(goldTemp);
-    }
+		Node2D goldTemp = (Node2D)gold.Instantiate();
+		RandomNumberGenerator rng = new RandomNumberGenerator();
+		int randint = rng.RandiRange(60, 500);
+		goldTemp.Position = new Vector2(randint, 950);
+		AddChild(goldTemp);
+	}
 }

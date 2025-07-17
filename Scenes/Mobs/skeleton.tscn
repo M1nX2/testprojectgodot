@@ -136,6 +136,7 @@ size = Vector2(22, 9)
 size = Vector2(34, 6)
 
 [node name="Skeleton" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_hlouf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -150,17 +151,23 @@ autoplay = "Idle"
 
 [node name="Detector" type="Area2D" parent="."]
 visible = false
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
 shape = SubResource("CircleShape2D_5psxx")
 
 [node name="Death" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
 position = Vector2(0, -23.5)
 shape = SubResource("RectangleShape2D_hlouf")
 
 [node name="Death2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death2"]
 shape = SubResource("RectangleShape2D_5psxx")

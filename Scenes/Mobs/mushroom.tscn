@@ -395,7 +395,6 @@ position = Vector2(-1, -8)
 sprite_frames = SubResource("SpriteFrames_30epl")
 animation = &"Attack"
 autoplay = "Idle"
-frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

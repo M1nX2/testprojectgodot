@@ -10,15 +10,15 @@ public partial class Mushroom : CharacterBody2D
         CHASE
     }
 
-    private StateType state;
+    private StateType _state;
 
     public StateType State
     {
-        get { return state; }
+        get { return _state; }
         set 
         { 
-            state = value; 
-            switch (state)
+            _state = value; 
+            switch (_state)
             {
                 case StateType.IDLE:
                     IdleStateStart();
