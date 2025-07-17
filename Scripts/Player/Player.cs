@@ -36,12 +36,14 @@ public partial class Player : CharacterBody2D
     private AnimatedSprite2D anim;
     private AnimationPlayer animPlayer;
 
-    private Vector2 velocity = Vector2.Zero;
+    private Signals signals;
 
+    private Vector2 velocity = Vector2.Zero;
     public override void _Ready()
     {
         anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        signals = GetNode<Signals>("/root/Signals");
 
         Health = 100;
         Gold = 0;
@@ -108,6 +110,8 @@ public partial class Player : CharacterBody2D
 
         base.Velocity = velocity;
 		base.MoveAndSlide();
+
+        signals.EmitSignal("PlayerPositionUpdate", this.Position);
 	}
 
     private void MoveState()

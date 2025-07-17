@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://du80i1d06ml37"]
+[gd_scene load_steps=20 format=3 uid="uid://du80i1d06ml37"]
 
 [ext_resource type="Script" uid="uid://40p0a11v6fai" path="res://Scripts/Levels/Level1.cs" id="1_ha31o"]
 [ext_resource type="PackedScene" uid="uid://cavrx0srtsckh" path="res://Scenes/Player/player.tscn" id="1_tumq0"]
@@ -8,10 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://sdf2371jm7kv" path="res://Scenes/Build/shop.tscn" id="4_qxfql"]
 [ext_resource type="Texture2D" uid="uid://dpg3h5ehe6ej0" path="res://sprites/oak_woods_v1.0/oak_woods_tileset.png" id="5_754fn"]
 [ext_resource type="Script" uid="uid://ivv7ew5bl6av" path="res://Scripts/Label/LabelHP.cs" id="7_bvt00"]
-[ext_resource type="PackedScene" uid="uid://blarcxj460doh" path="res://Scenes/Collectables/gold.tscn" id="8_754fn"]
 [ext_resource type="Script" uid="uid://rbhel3sha5u3" path="res://Scripts/Label/LabelGold.cs" id="8_bvt00"]
 [ext_resource type="PackedScene" uid="uid://dqhjw8i86uer7" path="res://Scenes/Mobs/mushroom.tscn" id="9_c7le1"]
-[ext_resource type="PackedScene" uid="uid://b3xhaw8p0cft" path="res://Scenes/Mobs/skeleton.tscn" id="9_crh0w"]
 [ext_resource type="Script" uid="uid://o8ph5r683v6i" path="res://Scripts/Collectables/Collectables.cs" id="9_oqgf2"]
 [ext_resource type="Texture2D" uid="uid://bmbdevrlr44et" path="res://sprites/circle.png" id="13_pa6b8"]
 
@@ -533,7 +531,7 @@ scale = Vector2(5.98125, 5.95)
 texture = ExtResource("2_wqkje")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="BG"]
-motion_scale = Vector2(1.5, 1)
+motion_scale = Vector2(2, 1)
 motion_mirroring = Vector2(1910.93, 0)
 
 [node name="BackgroundLayer2" type="Sprite2D" parent="BG/ParallaxLayer2"]
@@ -542,7 +540,7 @@ scale = Vector2(5.97188, 5.99445)
 texture = ExtResource("3_0f350")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="BG"]
-motion_scale = Vector2(2, 1)
+motion_scale = Vector2(4, 1)
 motion_mirroring = Vector2(1913.93, 0)
 
 [node name="BackgroundLayer3" type="Sprite2D" parent="BG/ParallaxLayer3"]
@@ -590,13 +588,10 @@ occluder = SubResource("OccluderPolygon2D_pa6b8")
 [node name="Mushroom" parent="Mobs" instance=ExtResource("9_c7le1")]
 position = Vector2(425, 939)
 
-[node name="Skeleton" parent="Mobs" instance=ExtResource("9_crh0w")]
-position = Vector2(359, 927)
-
 [node name="Player" type="Node2D" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("1_tumq0")]
-position = Vector2(571, 925)
+position = Vector2(625, 926)
 
 [node name="Camera2D" type="Camera2D" parent="Player/Player"]
 position = Vector2(34, -92)
@@ -642,10 +637,6 @@ libraries = {
 
 [node name="Collectables" type="Node2D" parent="."]
 script = ExtResource("9_oqgf2")
-
-[node name="Gold" parent="Collectables" instance=ExtResource("8_754fn")]
-visible = false
-position = Vector2(597, 945)
 
 [node name="Timer" type="Timer" parent="Collectables"]
 wait_time = 2.0

@@ -24,5 +24,5 @@ public partial class Collectables : Node2D
 		int randint = rng.RandiRange(60, 500);
 		goldTemp.Position = new Vector2(randint, 950);
 		AddChild(goldTemp);
-	}
+    }
 }
